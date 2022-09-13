@@ -1,0 +1,654 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            * {
+                
+            }
+            body {
+	            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+                background-color: black;
+	            background-size: 400% 400%;
+	            animation: gradient 15s ease infinite;
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                color: white;
+                text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.397);
+            }
+                @keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+            }
+            
+            .container {
+                padding: 50px 20px 0px 20px;
+                margin: 0px auto;
+                text-align: center;
+                z-index: 100;
+                overflow-y: hidden;
+
+            }
+            #box2 {
+                background-color: rgba(255, 255, 255, 0.527);
+                color: #333;
+                border-radius: 25px;
+                padding: 20px;
+                z-index: 200;
+                overflow-y: hidden;
+            }
+            #clouds{ 
+    z-index: 1;
+    position: fixed;
+    top: 0px;
+
+} 
+
+/*Time to finalise the cloud shape*/ 
+.cloud { 
+    width: 200px; height: 60px; 
+    background: #fff; 
+     
+    border-radius: 200px; 
+    -moz-border-radius: 200px; 
+    -webkit-border-radius: 200px; 
+     
+    position: relative; 
+
+} 
+
+.cloud:before, .cloud:after { 
+    content: ''; 
+    position: absolute;  
+    background: #fff; 
+    width: 100px; height: 80px; 
+    position: absolute; top: -15px; left: 10px; 
+     
+    border-radius: 100px; 
+    -moz-border-radius: 100px; 
+    -webkit-border-radius: 100px; 
+     
+    -webkit-transform: rotate(30deg); 
+    transform: rotate(30deg); 
+    -moz-transform: rotate(30deg); 
+} 
+
+.cloud:after { 
+    width: 120px; height: 120px; 
+    top: -55px; left: auto; right: 15px; 
+} 
+
+/*Time to animate*/
+.x1 {
+  -webkit-animation: moveclouds 15s linear infinite;
+  -moz-animation: moveclouds 15s linear infinite;
+  -o-animation: moveclouds 15s linear infinite;
+}
+
+/*variable speed, opacity, and position of clouds for realistic effect*/
+.x2 {
+  left: 200px;
+  
+  -webkit-transform: scale(0.6);
+  -moz-transform: scale(0.6);
+  transform: scale(0.6);
+  opacity: 0.6; /*opacity proportional to the size*/
+  
+  /*Speed will also be proportional to the size and opacity*/
+  /*More the speed. Less the time in 's' = seconds*/
+  -webkit-animation: moveclouds 25s linear infinite;
+  -moz-animation: moveclouds 25s linear infinite;
+  -o-animation: moveclouds 25s linear infinite;
+}
+
+.x3 {
+  left: -250px; top: -200px;
+  
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  transform: scale(0.8);
+  opacity: 0.8; /*opacity proportional to the size*/
+  
+  -webkit-animation: moveclouds 20s linear infinite;
+  -moz-animation: moveclouds 20s linear infinite;
+  -o-animation: moveclouds 20s linear infinite;
+}
+
+.x4 {
+  left: 470px; top: -250px;
+  
+  -webkit-transform: scale(0.75);
+  -moz-transform: scale(0.75);
+  transform: scale(0.75);
+  opacity: 0.75; /*opacity proportional to the size*/
+  
+  -webkit-animation: moveclouds 18s linear infinite;
+  -moz-animation: moveclouds 18s linear infinite;
+  -o-animation: moveclouds 18s linear infinite;
+}
+
+.x5 {
+  left: -150px; top: -150px;
+  
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  transform: scale(0.8);
+  opacity: 0.8; /*opacity proportional to the size*/
+  
+  -webkit-animation: moveclouds 20s linear infinite;
+  -moz-animation: moveclouds 20s linear infinite;
+  -o-animation: moveclouds 20s linear infinite;
+}
+
+@-webkit-keyframes moveclouds {
+  0% {margin-left: 1000px;}
+  100% {margin-left: -1000px;}
+}
+@-moz-keyframes moveclouds {
+  0% {margin-left: 1000px;}
+  100% {margin-left: -1000px;}
+}
+@-o-keyframes moveclouds {
+  0% {margin-left: 1000px;}
+  100% {margin-left: -1000px;}
+}
+.clock {
+  font-size: 2em;
+  text-align: center;
+}
+.typewrite {
+    height: 100px;
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 100px;
+}
+#card{
+  width: 400px;
+  min-height: 500px;
+  height: max-content;
+  border-radius: 6px;
+  background-color: #444;
+  padding-top: 10px;
+  padding-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+button {
+    padding: 10px;
+    background-color: black;
+    color: white;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 0px;
+    outline: 0;
+}
+#message {
+    padding: 10px;
+    color:#333;
+    background-color: #e4f5c3;
+    border: 1px solid #a6b28e;
+    font-size: 2em;
+}
+#message_cookie {
+    padding: 10px;
+    color:#333;
+    background-color: #ffffff;
+    border: 1px solid #484848;
+}
+.ghost {
+  animation: float 3s ease-out infinite;
+}
+
+@keyframes float {
+  50% {
+     transform: translate(0, 20px);
+  }
+}
+.shadowFrame {
+  width: 130px;
+  margin-top: 15px;
+}
+.shadow {
+  animation: shrink 3s ease-out infinite;
+  transform-origin: center center;
+  ellipse {
+    transform-origin: center center;
+  }
+}
+
+@keyframes shrink {
+  0% {
+    width: 90%;
+    margin: 0 5%;
+  }
+  50% {
+    width: 60%;
+    margin: 0 18%;
+  }
+  100% {
+    width: 90%;
+    margin: 0 5%;
+  }
+}
+</style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body onload="loadMeme()">
+
+        <div id="clouds"> 
+            <div class="cloud x1"></div> 
+            <!-- Time for multiple clouds to dance around --> 
+            <div class="cloud x2"></div> 
+            <div class="cloud x3"></div> 
+            <div class="cloud x4"></div> 
+            <div class="cloud x5"></div> 
+        </div>
+
+        <div class="container">
+
+            <svg class="ghost" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            width="127.433px" height="132.743px" viewBox="0 0 127.433 132.743" enable-background="new 0 0 127.433 132.743"
+            xml:space="preserve">
+       <path fill="#FFF6F4" d="M116.223,125.064c1.032-1.183,1.323-2.73,1.391-3.747V54.76c0,0-4.625-34.875-36.125-44.375
+           s-66,6.625-72.125,44l-0.781,63.219c0.062,4.197,1.105,6.177,1.808,7.006c1.94,1.811,5.408,3.465,10.099-0.6
+           c7.5-6.5,8.375-10,12.75-6.875s5.875,9.75,13.625,9.25s12.75-9,13.75-9.625s4.375-1.875,7,1.25s5.375,8.25,12.875,7.875
+           s12.625-8.375,12.625-8.375s2.25-3.875,7.25,0.375s7.625,9.75,14.375,8.125C114.739,126.01,115.412,125.902,116.223,125.064z"/>
+       <circle fill="#013E51" cx="86.238" cy="57.885" r="6.667"/>
+       <circle fill="#013E51" cx="40.072" cy="57.885" r="6.667"/>
+       <path fill="#013E51" d="M71.916,62.782c0.05-1.108-0.809-2.046-1.917-2.095c-0.673-0.03-1.28,0.279-1.667,0.771
+           c-0.758,0.766-2.483,2.235-4.696,2.358c-1.696,0.094-3.438-0.625-5.191-2.137c-0.003-0.003-0.007-0.006-0.011-0.009l0.002,0.005
+           c-0.332-0.294-0.757-0.488-1.235-0.509c-1.108-0.049-2.046,0.809-2.095,1.917c-0.032,0.724,0.327,1.37,0.887,1.749
+           c-0.001,0-0.002-0.001-0.003-0.001c2.221,1.871,4.536,2.88,6.912,2.986c0.333,0.014,0.67,0.012,1.007-0.01
+           c3.163-0.191,5.572-1.942,6.888-3.166l0.452-0.453c0.021-0.019,0.04-0.041,0.06-0.061l0.034-0.034
+           c-0.007,0.007-0.015,0.014-0.021,0.02C71.666,63.771,71.892,63.307,71.916,62.782z"/>
+       <circle fill="#FCEFED" stroke="#FEEBE6" stroke-miterlimit="10" cx="18.614" cy="99.426" r="3.292"/>
+       <circle fill="#FCEFED" stroke="#FEEBE6" stroke-miterlimit="10" cx="95.364" cy="28.676" r="3.291"/>
+       <circle fill="#FCEFED" stroke="#FEEBE6" stroke-miterlimit="10" cx="24.739" cy="93.551" r="2.667"/>
+       <circle fill="#FCEFED" stroke="#FEEBE6" stroke-miterlimit="10" cx="101.489" cy="33.051" r="2.666"/>
+       <circle fill="#FCEFED" stroke="#FEEBE6" stroke-miterlimit="10" cx="18.738" cy="87.717" r="2.833"/>
+       <path fill="#FCEFED" stroke="#FEEBE6" stroke-miterlimit="10" d="M116.279,55.814c-0.021-0.286-2.323-28.744-30.221-41.012
+           c-7.806-3.433-15.777-5.173-23.691-5.173c-16.889,0-30.283,7.783-37.187,15.067c-9.229,9.736-13.84,26.712-14.191,30.259
+           l-0.748,62.332c0.149,2.133,1.389,6.167,5.019,6.167c1.891,0,4.074-1.083,6.672-3.311c4.96-4.251,7.424-6.295,9.226-6.295
+           c1.339,0,2.712,1.213,5.102,3.762c4.121,4.396,7.461,6.355,10.833,6.355c2.713,0,5.311-1.296,7.942-3.962
+           c3.104-3.145,5.701-5.239,8.285-5.239c2.116,0,4.441,1.421,7.317,4.473c2.638,2.8,5.674,4.219,9.022,4.219
+           c4.835,0,8.991-2.959,11.27-5.728l0.086-0.104c1.809-2.2,3.237-3.938,5.312-3.938c2.208,0,5.271,1.942,9.359,5.936
+           c0.54,0.743,3.552,4.674,6.86,4.674c1.37,0,2.559-0.65,3.531-1.932l0.203-0.268L116.279,55.814z M114.281,121.405
+           c-0.526,0.599-1.096,0.891-1.734,0.891c-2.053,0-4.51-2.82-5.283-3.907l-0.116-0.136c-4.638-4.541-7.975-6.566-10.82-6.566
+           c-3.021,0-4.884,2.267-6.857,4.667l-0.086,0.104c-1.896,2.307-5.582,4.999-9.725,4.999c-2.775,0-5.322-1.208-7.567-3.59
+           c-3.325-3.528-6.03-5.102-8.772-5.102c-3.278,0-6.251,2.332-9.708,5.835c-2.236,2.265-4.368,3.366-6.518,3.366
+           c-2.772,0-5.664-1.765-9.374-5.723c-2.488-2.654-4.29-4.395-6.561-4.395c-2.515,0-5.045,2.077-10.527,6.777
+           c-2.727,2.337-4.426,2.828-5.37,2.828c-2.662,0-3.017-4.225-3.021-4.225l0.745-62.163c0.332-3.321,4.767-19.625,13.647-28.995
+           c3.893-4.106,10.387-8.632,18.602-11.504c-0.458,0.503-0.744,1.165-0.744,1.898c0,1.565,1.269,2.833,2.833,2.833
+           c1.564,0,2.833-1.269,2.833-2.833c0-1.355-0.954-2.485-2.226-2.764c4.419-1.285,9.269-2.074,14.437-2.074
+           c7.636,0,15.336,1.684,22.887,5.004c26.766,11.771,29.011,39.047,29.027,39.251V121.405z"/>
+       </svg>
+                    <div class="typewrite" data-period="8000" data-type='[ "Hi Shu Yi", "Alles klar?", "Schön dich zu sehen!", "Du bist ja immer noch da :-)", "Was machst du heute?", "Was ist rot und steht im Wald? - Ein Kirsch"]'>
+                        <span class="wrap"></span>
+                    </div>
+                
+
+                <h3 id="count">Heute ist der <span id="count_number"></span> Tag deines Auslandssemester!</h3>
+                <h3 id="countdown" style="display: none">Noch <span id="countdown_number"></span> Tag(e) bis dein Auslandssemester endet!</h3>
+
+            <br/>
+
+            <h5>
+                Aktuell ist es <div class="clock"></div> in Deutschland/Österreich.
+                <br/><br/>
+            </h5>
+
+            <div id="box2">
+                <div id="poll">
+                    <h3>Wie geht es dir heute?</h3>
+                    <span id="happy_face" style='font-size:50px;float:left;width: 50%;'>&#128522;</span>
+                    <span id="sad_face" style='font-size:50px;float:left;width: 50%;'>&#128546;</span>
+                </div>
+                <div id="sad" style="display:none;">
+                    <br/>
+                    <h3>Oh nein, was ist los?</h3>
+                    <h4>Erste - Hilfe - Meme</h4>
+                    <img width="80%" id="meme" />
+                    <h4>Etwas besser?</h4>
+                    <button id="random_url">Wenn nicht klick mich!</button>
+                </div>
+                <div id="happy" style="display:none;">
+                    <div id="message"></div>
+                    <div id="fortune_cookie" style="display:none">
+                            <h3>Ohh, du hast einen Glückskeks gefunden:</h3>
+                            <p>Öffne ihn schnell mit einem Klick</p>
+                            <p style='font-size:50px;'>&#129376;</p>
+                    </div>
+                    <div id="message_cookie" style="display:none">
+                        <h3>Deine Glücksbotschaft:</h3>
+                        <p id="message_cookie_js"></p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 100px 0px 30px 0px;">Hier noch der aktuelle Wetterbericht:</h3>
+
+        </div>
+
+        <script>
+            (function(d, s, id) {
+                if (d.getElementById(id)) {
+                    if (window.__TOMORROW__) {
+                        window.__TOMORROW__.renderWidget();
+                    }
+                    return;
+                }
+                const fjs = d.getElementsByTagName(s)[0];
+                const js = d.createElement(s);
+                js.id = id;
+                js.src = "https://www.tomorrow.io/v1/widget/sdk/sdk.bundle.min.js";
+    
+                fjs.parentNode.insertBefore(js, fjs);
+            })(document, 'script', 'tomorrow-sdk');
+            </script>
+    
+            <div class="tomorrow"
+               data-location-id="076497"
+               data-language="DE"
+               data-unit-system="METRIC"
+               data-skin="light"
+               data-widget-type="upcoming"
+               style="padding:22px;position:relative;"
+            >
+              <a
+                href="https://www.tomorrow.io/weather/"
+                rel="nofollow noopener noreferrer"
+                target="_blank"
+                style="position: absolute; bottom: 0; transform: translateX(-50%); left: 50%;"
+              >
+                <img
+                  alt="Powered by Tomorrow.io"
+                  src="https://weather-website-client.tomorrow.io/img/powered-by-tomorrow.svg"
+                  width="140"
+                  height="15"
+                />
+              </a>
+            </div>
+
+            <div class="container">
+                <h3 style="margin: 50px 0px 20px 0px;">Und hier noch eine Katze, weil man von Katzen nie genug bekommt:</h3>
+                <img style="width: 90%; margin-bottom: 50px;" src="https://thecatapi.com/api/images/get?format=src&type=gif" alt="">
+            </div>
+
+        <script type="text/javascript">
+
+            /*function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i <ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+            }
+          
+            let cookie = getCookie("time");    
+           
+            if (cookie != "") {
+                alert("Sorry. Ich weiß diese App kann süchtig machen, aber du darfst sie nur einmal in 24 Stunden öffnen!");
+                window.location = "https://www.google.com";
+            } else {
+                var timeToAdd = 1000 * 60 * 60 * 24 * 7 * 4 * 6;
+                var date = new Date();
+                var expiryTime = parseInt(date.getTime()) + timeToAdd;
+                date.setTime(expiryTime);
+                var utcTime = date.toUTCString();
+                document.cookie = "time=yes; expires=" + utcTime + ";";
+            }*/
+
+            // COUNTER
+            $("#count").click(function() {
+                $("#count").hide();
+                $("#countdown").show();
+            });
+            $("#countdown").click(function() {
+                $("#count").show();
+                $("#countdown").hide();
+            });
+            function getNumberOfDays(start, end) {
+                const date1 = new Date(start);
+                const date2 = new Date(end);
+
+                // One day in milliseconds
+                const oneDay = 1000 * 60 * 60 * 24;
+
+                // Calculating the time difference between two dates
+                const diffInTime = date2.getTime() - date1.getTime();
+
+                // Calculating the no. of days between two dates
+                const diffInDays = Math.round(diffInTime / oneDay);
+
+                return diffInDays;
+            }
+            $("#countdown_number").text(getNumberOfDays(Date.now(),"2/12/2023"));
+            $("#count_number").text(getNumberOfDays("9/29/2022", Date.now()));
+
+            // HAPPY
+            $("#happy_face").click(function() {
+                let messages = [];
+                messages[0] = "Carpe Diem";
+                messages[1] = "Ich wünsch dir einen fabelhaften Tag!";
+                messages[2] = "Have a nice day!";
+                messages[3] = "Genieß den Tag!";
+                messages[4] = "Freut mich zu hören, dass es dir gut geht!";
+                messages[5] = "Viel Spaß bei allem was du heute noch machst!";
+
+                var i = ~~(Math.random() * messages.length);
+                $("#message").text(messages[i]);
+
+                $("#happy").show();
+                $("#poll").hide();
+            });
+
+            // GLÜCKSKEKS
+            var k = ~~(Math.random() * 5);
+            if (k == 4) {
+                $("#fortune_cookie").show();
+            }
+
+            $("#fortune_cookie").click(function() {
+                let messages_fortune = [];
+                messages_fortune[0] = "Ein großer Mensch ist, wer sein Kinderherz nicht verliert.";
+                messages_fortune[1] = "Ein großer Mensch ist, wer sein Kinderherz nicht verliert.";
+                messages_fortune[2] = "Lerne zu schweigen und Du merkst, dass Du viel zu viel geredet hast. ";
+                messages_fortune[3] = "Es ist besser, ein einziges kleines Licht anzuzünden, als die Dunkelheit zu verfluchen. ";
+                messages_fortune[4] = "Wer sich darauf versteht, das Leben zu genießen, braucht keine Reichtümer. ";
+                messages_fortune[5] = "Wenn jemand sagt er habe keine Zeit, bedeutet das nur, dass ihm andere Dinge wichtiger sind. ";
+                messages_fortune[6] = "Die Stärke an einem Gefühl erkennt man an den Opfern, die man bereit ist dafür zu geben. ";
+                messages_fortune[7] = "Trunkenheit erzeugt keine Fehler, sie deckt sie auf.";
+                messages_fortune[8] = "Jede Minute, die man lacht verlängert das Leben um eine Stunde.";
+                messages_fortune[9] = "Fordere viel von Dir selbst und erwarte wenig von anderen. So wird Dir viel Ärger erspart bleiben. ";
+                messages_fortune[10] = "Ein einfacher Zweig ist dem Vogel lieber, als ein goldener Käfig.";
+                messages_fortune[11] = "Über Vergangenes mache Dir keine Sorge, dem Kommenden wende Dich zu. ";
+                messages_fortune[12] = "Auch eine Reise von 1000 Meilen fängt mit dem ersten Schritt an.";
+                messages_fortune[13] = "Der wahre Gelehrte schämt sich nicht, auch solche zu fragen, die unter ihm stehen. ";
+                messages_fortune[14] = "Leg Dir jeden Tag für Deine Sorgen eine halbe Stunde zurück. Und in dieser Zeit mache ein Schläfchen!  ";
+                messages_fortune[15] = "Nur mit den Augen der Anderen kann man seine Fehler gut sehen. ";
+                messages_fortune[16] = "Die Liebe ist das Gewürz des Lebens. Sie kann es versüßen, aber auch versalzen. ";
+                messages_fortune[17] = "Ein Weg wird erst dann ein Weg, wenn einer ihn geht. ";
+                messages_fortune[18] = "Der Mensch kann nicht tausend Tage ununterbrochen gute Zeit haben, so wie die Blume nicht hundert Tage blühen kann ";
+                messages_fortune[19] = "Wir leben nicht, um zu glauben, sondern um zu lernen. ";
+                messages_fortune[20] = "Jeder hat Recht auf seine eigene Meinung, aber er hat keinen Anspruch darauf, dass andere sie teilen. ";
+
+                var i = ~~(Math.random() * messages_fortune.length);
+                $("#message_cookie_js").text(messages_fortune[i]);
+
+                $("#message_cookie").show();
+                $("#message").hide();
+                $("#fortune_cookie").hide();
+            });
+
+            // SAD
+            $("#sad_face").click(function() {
+                $("#sad").show();
+                $("#poll").hide();
+            });
+
+            let links = [];
+            links[0] = "https://openpuppies.com";
+            links[1] = "https://www.omfgdogs.com/";
+            links[2] = "https://www.youtube.com/watch?v=PunVHiOxUEk";
+            links[3] = "https://www.youtube.com/watch?v=dT0mQMvxzlA";
+            links[4] = "https://sts003.feratel.co.at/streams/stsstore001/1/05970_631ddcb2-62fcVid.mp4?dcsdesign=feratel4";
+            links[5] = "https://www.youtube.com/watch?v=Khd-uyOuhGo";
+            links[6] = "https://m.youtube.com/watch?v=1wOAhRAqb40";
+            links[7] = "https://www.youtube.com/watch?v=-C_3eYj-pOM";
+            links[8] = "https://www.huffpost.com/impact/topic/good-news";
+            links[9] = "https://hungoverowls.tumblr.com";
+            links[10] = "https://findtheinvisiblecow.com";
+            links[11] = "http://endless.horse";
+            links[12] = "https://quickdraw.withgoogle.com";
+            links[13] = "http://crossdivisions.com";
+            links[14] = "https://cat-bounce.com";
+            links[15] = "http://www.fallingfalling.com";
+            links[16] = "http://www.republiquedesmangues.fr";
+            links[17] = "https://r33b.net";
+            links[18] = "https://corgiorgy.com";
+            links[19] = "http://wutdafuk.com";
+            links[20] = "http://corndog.io";
+            links[21] = "https://www.youtube.com/watch?v=H7Q9isRWNS4";
+            links[22] = "https://www.youtube.com/watch?v=3DOB0iBNY-M";
+            links[23] = "https://www.youtube.com/watch?v=JCHttVEG_Lk";
+            links[24] = "https://www.youtube.com/watch?v=xscOXwsaGLQ";
+            links[25] = "https://makemebabies.com";
+            links[26] = "https://animalinyou.com";
+            links[27] = "https://you.visualdna.com/quiz/whoami#!/quiz";
+            links[28] = "https://www.youtube.com/watch?v=apP07zXC3QM";
+            links[29] = "https://5f27cc8163c2e.streamlock.net/833/833.stream/playlist.m3u8?wowzatokenhash=p7UF7xSTyD0N2TY8ThN6rDZHZXgsagDLt-MNHvmDvyY=&wowzatokenendtime=1663020291&wowzatokenstarttime=1663016691";
+            links[30] = "https://www.youtube.com/watch?v=z_fY1pj1VBw";
+
+            $("#random_url").click(function() {
+                var i = ~~(Math.random() * links.length);
+                window.location = links[i]; // if must be 'parent' leave as 'parent'
+                return false;
+            });
+
+            // TYPEWRITER
+            var TxtType = function(el, toRotate, period) {
+                this.toRotate = toRotate;
+                this.el = el;
+                this.loopNum = 0;
+                this.period = parseInt(period, 10) || 2000;
+                this.txt = '';
+                this.tick();
+                this.isDeleting = false;
+            };
+
+            TxtType.prototype.tick = function() {
+                var i = this.loopNum % this.toRotate.length;
+                var fullTxt = this.toRotate[i];
+
+                if (this.isDeleting) {
+                this.txt = fullTxt.substring(0, this.txt.length - 1);
+                } else {
+                this.txt = fullTxt.substring(0, this.txt.length + 1);
+                }
+
+                this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+                var that = this;
+                var delta = 200 - Math.random() * 100;
+
+                if (this.isDeleting) { delta /= 2; }
+
+                if (!this.isDeleting && this.txt === fullTxt) {
+                    delta = this.period;
+                    this.isDeleting = true;
+                } else if (this.isDeleting && this.txt === '') {
+                    this.isDeleting = false;
+                    this.loopNum++;
+                    delta = 500;
+                }
+
+                setTimeout(function() {
+                that.tick();
+                }, delta);
+            };
+
+            window.onload = function() {
+                var elements = document.getElementsByClassName('typewrite');
+                for (var i=0; i<elements.length; i++) {
+                    var toRotate = elements[i].getAttribute('data-type');
+                    var period = elements[i].getAttribute('data-period');
+                    if (toRotate) {
+                    new TxtType(elements[i], JSON.parse(toRotate), period);
+                    }
+            }
+            // INJECT CSS
+            var css = document.createElement("style");
+                css.type = "text/css";
+                css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+                document.body.appendChild(css);
+            };
+
+            // CLOCK
+
+            function clock() {// We create a new Date object and assign it to a variable called "time".
+            var d = new Date()
+            var time = new Date(d.getTime() + (d.getTimezoneOffset() - 210) * 60000),
+
+            
+            // Access the "getHours" method on the Date object with the dot accessor.
+            hours = time.getHours(),
+            
+            // Access the "getMinutes" method with the dot accessor.
+            minutes = time.getMinutes(),
+            
+            
+            seconds = time.getSeconds();
+
+        document.querySelectorAll('.clock')[0].innerHTML = harold(hours) + ":" + harold(minutes) + ":" + harold(seconds);
+        
+        function harold(standIn) {
+            if (standIn < 10) {
+            standIn = '0' + standIn
+            }
+            return standIn;
+        }
+        }
+        setInterval(clock, 1000);
+
+        // Random Meme
+        var memeImageEl, titleEl, authorEl
+        memeImageEl = document.getElementById('memeImage')
+        titleEl = document.getElementById('title')
+        authorEl = document.getElementById('author')
+
+        
+        fetch('https://meme-api.herokuapp.com/gimme')
+            .then(jsonData => jsonData.json())
+            .then(data => response(data))
+
+        let response = (data) => {
+            console.log(data)
+            var authorOfMeme, title, imageUrl, postLink, ups;
+            authorOfMeme = data.author
+            title = data.title
+            imageUrl = data.url
+            postLink = data.postLink
+            ups = data.ups
+            console.log(postLink)
+            $("#meme").attr("src", imageUrl)
+        
+        }
+        var audio = document.getElementById("pokesong");
+
+        </script>
+    </body>
+</html>

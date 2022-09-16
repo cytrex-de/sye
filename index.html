@@ -236,6 +236,54 @@ button {
     margin: 0 5%;
   }
 }
+#reload {
+    font-size: 2em;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+}
+.spinner {
+  margin: 100px auto 0;
+  width: 500px;
+  text-align: center;
+}
+
+.spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: #333;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
 </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
@@ -249,9 +297,9 @@ button {
             <div class="cloud x4"></div> 
             <div class="cloud x5"></div> 
         </div>
-
         <div class="container">
-
+            <div id="reload">&#8634;</div>
+<div id="ghost">
             <svg class="ghost" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
             width="127.433px" height="132.743px" viewBox="0 0 127.433 132.743" enable-background="new 0 0 127.433 132.743"
             xml:space="preserve">
@@ -287,9 +335,14 @@ button {
            c3.893-4.106,10.387-8.632,18.602-11.504c-0.458,0.503-0.744,1.165-0.744,1.898c0,1.565,1.269,2.833,2.833,2.833
            c1.564,0,2.833-1.269,2.833-2.833c0-1.355-0.954-2.485-2.226-2.764c4.419-1.285,9.269-2.074,14.437-2.074
            c7.636,0,15.336,1.684,22.887,5.004c26.766,11.771,29.011,39.047,29.027,39.251V121.405z"/>
-       </svg>
-                    <div class="typewrite" data-period="8000" data-type='[ "Hi Shu Yi", "Alles klar?", "Schön dich zu sehen!", "Du bist ja immer noch da :-)", "Was machst du heute?", "Was ist rot und steht im Wald? - Ein Kirsch"]'>
+       </svg></div>
+                    <div class="typewrite" data-period="8000" data-type='[ "Hi Shu Yi", "Alles klar?", "Schön dich zu sehen!", "Du bist ja immer noch da :-)", "Was machst du heute?", "Was ist rot und steht im Wald? - Ein Kirsch", "Was massu?", "Holaa", "Niiiii Haooo"]'>
                         <span class="wrap"></span>
+                        <div class="spinner" id="spinner">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                          </div>
                     </div>
                 
 
@@ -382,7 +435,11 @@ button {
 
         <script type="text/javascript">
 
-            /*function getCookie(cname) {
+            $("#reload").click(function() {
+                location.reload();
+            });
+
+            function getCookie(cname) {
             let name = cname + "=";
             let decodedCookie = decodeURIComponent(document.cookie);
             let ca = decodedCookie.split(';');
@@ -401,8 +458,7 @@ button {
             let cookie = getCookie("time");    
            
             if (cookie != "") {
-                alert("Sorry. Ich weiß diese App kann süchtig machen, aber du darfst sie nur einmal in 24 Stunden öffnen!");
-                window.location = "https://www.google.com";
+                $("#box2").hide();
             } else {
                 var timeToAdd = 1000 * 60 * 60 * 24 * 7 * 4 * 6;
                 var date = new Date();
@@ -410,7 +466,7 @@ button {
                 date.setTime(expiryTime);
                 var utcTime = date.toUTCString();
                 document.cookie = "time=yes; expires=" + utcTime + ";";
-            }*/
+            }
 
             // COUNTER
             $("#count").click(function() {
@@ -588,6 +644,7 @@ button {
                     var period = elements[i].getAttribute('data-period');
                     if (toRotate) {
                     new TxtType(elements[i], JSON.parse(toRotate), period);
+                    $('#spinner').hide();
                     }
             }
             // INJECT CSS

@@ -282,6 +282,22 @@ button {
     transform: scale(1.0);
   }
 }
+.container3 {
+	background-color: rgba(255, 255, 255, 0.527);
+    color: #333;
+    border-radius: 25px;
+    margin: 10px;
+    z-index: 200;
+    overflow-y: hidden;
+}
+
+.container3 h2{
+	padding: 22px;
+	font-size: 20px;
+}
+
+.container3 h2 small{ font-size: 14px; }
+
 </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
@@ -348,11 +364,18 @@ button {
                 <h3 id="countdown" style="display: none">Noch <span id="countdown_number"></span> Tag(e) bis dein Auslandssemester endet!</h3>
 
             <br/>
-
-            <h5>
-                Aktuell ist es <div class="clock"></div> in Deutschland/Österreich.
-                <br/><br/>
-            </h5>
+                <div class="container3">
+                <h2 data-locale="Berlin" data-offset="+2">
+                    <small>Deutschland 🇩🇪 / Österreich 🇦🇹</small>
+                    <p></p>
+                </h2>
+                </div>
+                <div class="container3">
+                <h2 data-locale="Kuala Lumpur" data-offset="+8">
+                    <small>Malaysia 🇲🇾</small>
+                    <p></p>
+                </h2>
+                </div>
 
             <div id="box2">
                 <div id="poll">
@@ -702,7 +725,31 @@ button {
             $("#meme").attr("src", imageUrl)
         
         }
-        var audio = document.getElementById("pokesong");
+        
+        // search all desired clocks
+function searchClocks() {
+	document.querySelectorAll('.container h2').forEach(item => {
+		const timezone = {
+			locale: item.getAttribute('data-locale'),
+			offset: item.getAttribute('data-offset')
+		};
+		
+		setInterval(() => {
+			item.querySelector('p').innerHTML = calcTime(timezone);
+		}, 1000);
+	})
+}
+
+// get local time (browser based)
+function calcTime(timezone) {
+	const d = new Date(),
+				utc = d.getTime() + (d.getTimezoneOffset() * 60000),
+				nd = new Date(utc + (3600000 * timezone.offset));
+
+	return nd.toLocaleString();
+}
+
+searchClocks();
 
         </script>
     </body>

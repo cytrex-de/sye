@@ -43,7 +43,7 @@
                 overflow-y: hidden;
                 margin-bottom:40px;
                 margin: 0px auto;
-                width: 200px;
+                width: 300px;
             }
             #clouds{ 
     z-index: 1;
@@ -483,7 +483,7 @@ button {
             if (cookie != "") {
                 $("#box2").hide();
             } else {
-                var timeToAdd = 1000 * 60 * 60 * 24 * 7 * 4 * 6;
+                var timeToAdd = 1000 * 60 * 60 * 24;
                 var date = new Date();
                 var expiryTime = parseInt(date.getTime()) + timeToAdd;
                 date.setTime(expiryTime);
